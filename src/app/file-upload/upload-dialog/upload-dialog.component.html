@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>upload file</h1>
+<div mat-dialog-content>
+  <div>
+    <input #file type="file" multiple (change)="onFilesAdded()">
+    <button 
+      mat-raised-button style="margin: 10px 0px;" 
+      (click)="file.click()"
+    >
+      Select files from your device
+    </button>
+    <!-- <button mat-raised-button color="primary">Primary</button> -->
+  </div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let file of files; let i = index">
+      <h4 mat-line>{{file.name}}</h4>
+      <span *ngIf="messages.length">
+        <p>{{ messages[i] }}</p>
+        <mat-progress-bar 
+          *ngIf="progress"
+          mode="determinate"
+          [value]="progress[file.name].progress | async"
+        ></mat-progress-bar>
+      </span>
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="upload()">upload</button>
+</div>
