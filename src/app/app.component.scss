@@ -14,6 +14,11 @@
   z-index: 2;
 }
 
+.toolbar {
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
 // h1.app-name {
 //   margin-left: 8px;
 // }
