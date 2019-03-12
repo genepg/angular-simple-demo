@@ -1,0 +1,13 @@
+<p>
+  drag-and-drop works!
+</p>
+
+<ul appSortableList (sort)="sort($event)">
+  <li
+    appDragItem
+    *ngFor="let item of items"
+  >
+    {{ item }} item
+  </li>
+</ul>
+

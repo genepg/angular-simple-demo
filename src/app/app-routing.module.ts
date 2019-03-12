@@ -3,6 +3,10 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'dragAndDrop',
+    loadChildren: './drag-and-drop/drag-and-drop.module#DragAndDropModule'
+  },
+  {
     path: 'fileUpload',
     loadChildren: './file-upload/file-upload.module#FileUploadModule'
   },
