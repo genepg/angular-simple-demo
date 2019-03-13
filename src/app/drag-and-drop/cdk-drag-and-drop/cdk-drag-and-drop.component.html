@@ -1,0 +1,26 @@
+<p>
+  cdk-drag-and-drop works!
+</p>
+
+<div 
+  cdkDropList
+  class="example-list"
+  [cdkDropListData]="movies"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListConnectedTo]="[doneList]"
+>
+  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div>
+
+
+<h2>Done</h2>
+
+<div
+  cdkDropList
+  #doneList="cdkDropList"
+  [cdkDropListData]="done"
+  [cdkDropListConnectedTo]="[todoList]"
+  class="example-list"
+  (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+</div>

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drag-and-drop.component.scss']
 })
 export class DragAndDropComponent implements OnInit {
-  items = Array.from({length: 500}, (_, i) => i);
+  items = Array.from({length: 100}, (_, i) => i);
 
   constructor() { }
 
