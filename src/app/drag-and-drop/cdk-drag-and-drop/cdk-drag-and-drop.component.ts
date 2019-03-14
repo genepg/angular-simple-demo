@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Component, OnInit, ElementRef, NgZone, Output } from '@angular/core';
+import { CdkDragEnd, CdkDragStart, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { takeWhile, debounceTime, sampleTime, filter } from 'rxjs/operators';
+
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cdk-drag-and-drop',
@@ -15,7 +18,11 @@ export class CdkDragAndDropComponent implements OnInit {
     'Episode V - The Empire Strikes Back',
     'Episode VI - Return of the Jedi',
     'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
+    'Episode VIII - The Last Jedi',
+    '1',
+    '1',
+    '1',
+    '1'
   ];
 
   done = [
@@ -26,9 +33,29 @@ export class CdkDragAndDropComponent implements OnInit {
     'Walk dog'
   ];
 
-  constructor() { }
+  activeDropContainer;
+  activeDrag;
+  draging;
+
+  // @Output() dragStart: any = new EventEmitter();
+  dragStartSource = new Subject();
+  dragStart$ = this.dragStartSource.asObservable();
+
+  autoScroll;
+
+  constructor(private el: ElementRef, private ngZone: NgZone) { }
 
   ngOnInit() {
+    console.log('TEST', this.el.nativeElement);
+
+  }
+
+  dragEnded(event: CdkDragEnd) {
+    this.dragStartSource.next('end');
+  }
+
+  dragStarted(event: CdkDragStart) {
+    this.dragStartSource.next(event);
   }
 
   drop(event: CdkDragDrop<string[]>) {

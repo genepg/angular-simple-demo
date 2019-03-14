@@ -8,6 +8,7 @@ import { DragAndDropComponent } from './drag-and-drop.component';
 import { DragItemDirective } from './dnd-directive/drag-item.directive';
 import { SortableListDirective } from './dnd-directive/sortable-list.directive';
 import { CdkDragAndDropComponent } from './cdk-drag-and-drop/cdk-drag-and-drop.component';
+import { ScrollDirective } from './cdk-drag-and-drop/scroll/scroll.directive';
 
 const routes: Routes = [
   { path: '', component: DragAndDropComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     DragItemDirective,
     SortableListDirective,
     CdkDragAndDropComponent,
+    ScrollDirective,
   ],
   exports: []
 })

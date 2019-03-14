@@ -2,14 +2,22 @@
   cdk-drag-and-drop works!
 </p>
 
-<div 
+<div
   cdkDropList
   class="example-list"
   [cdkDropListData]="movies"
   (cdkDropListDropped)="drop($event)"
   [cdkDropListConnectedTo]="[doneList]"
 >
-  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+  <div 
+    class="example-box"
+    *ngFor="let movie of movies"
+    (cdkDragStarted)="dragStarted($event)"
+    (cdkDragEnded)="dragEnded($event)"
+    cdkDrag
+  >
+    {{movie}}
+  </div>
 </div>
 
 
@@ -17,10 +25,17 @@
 
 <div
   cdkDropList
+  class="example-list"
   #doneList="cdkDropList"
   [cdkDropListData]="done"
   [cdkDropListConnectedTo]="[todoList]"
-  class="example-list"
-  (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  (cdkDragStarted)="dragStarted($event)"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div 
+    class="example-box"
+    *ngFor="let item of done"
+    (cdkDragStarted)="dragStarted($event)"
+    cdkDrag
+  >{{item}}</div>
 </div>
