@@ -3,6 +3,10 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'tableOfContents',
+    loadChildren: './table-of-contents/table-of-contents.module#TableOfContentsModule'
+  },
+  {
     path: 'dragAndDrop',
     loadChildren: './drag-and-drop/drag-and-drop.module#DragAndDropModule'
   },
