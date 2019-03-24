@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Injectable } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { CdkDragAndDropComponent } from '../cdk-drag-and-drop.component';
@@ -21,12 +21,10 @@ export class ScrollDirective {
 
   constructor(
     private elementRef: ElementRef,
-    private cdkDragAndDropComponent: CdkDragAndDropComponent
+    private cdkDragAndDropComponent: CdkDragAndDropComponent,
   ) {
-    console.log('this.elementRef.nativeElement', this.elementRef.nativeElement);
-    this.boundaryRect = this.elementRef.nativeElement.getBoundingClientRect();
     this.cdkDragAndDropComponent.dragStart$.subscribe(res => {
-      console.log(res);
+      this.boundaryRect = this.elementRef.nativeElement.getBoundingClientRect();
       if (res !== 'end') {
         this.dragStart(res);
       } else {
@@ -133,7 +131,6 @@ export class ScrollDirective {
     this.draging = false;
     this.destroy();
     this.subscription.unsubscribe();
-    // this.activeDrag._dragRef.moved.unsubscribe();
   }
 
   dragStart(event) {
@@ -152,6 +149,7 @@ export class ScrollDirective {
         this.onMove(e.pointerPosition);
       });
   }
+
 
 
   scrollCallback({x, y}: { x: number; y: number }) {
