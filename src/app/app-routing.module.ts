@@ -4,15 +4,15 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: 'tableOfContents',
-    loadChildren: './table-of-contents/table-of-contents.module#TableOfContentsModule'
+    loadChildren: () => import('./table-of-contents/table-of-contents.module').then(m => m.TableOfContentsModule)
   },
   {
     path: 'dragAndDrop',
-    loadChildren: './drag-and-drop/drag-and-drop.module#DragAndDropModule'
+    loadChildren: () => import('./drag-and-drop/drag-and-drop.module').then(m => m.DragAndDropModule)
   },
   {
     path: 'fileUpload',
-    loadChildren: './file-upload/file-upload.module#FileUploadModule'
+    loadChildren: () => import('./file-upload/file-upload.module').then(m => m.FileUploadModule)
   },
   {
     path: '**',
